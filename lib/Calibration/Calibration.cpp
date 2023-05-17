@@ -13,34 +13,33 @@ Calibration::~Calibration()
 void Calibration::test_rotations() 
 {
     // tour complet à droite, retour position initiale
-    mouvement->rotate(Droite);
-    delay(DUREE_ROTATION_DROITE);
-    mouvement->rotate(Droite);
-    delay(DUREE_ROTATION_DROITE);
-    mouvement->rotate(Droite);
-    delay(DUREE_ROTATION_DROITE);
-    mouvement->rotate(Droite);
-    delay(DUREE_ROTATION_DROITE);
-
+    for (int i=0; i<4; i++)
+    {
+        mouvement->rotate(Droite);
+        delay(DUREE_ROTATION_DROITE);
+    }
+    
     // tour complet à gauche, retour position initiale
-    mouvement->rotate(Gauche);
-    delay(DUREE_ROTATION_GAUCHE);
-    mouvement->rotate(Gauche);
-    delay(DUREE_ROTATION_GAUCHE);
-    mouvement->rotate(Gauche);
-    delay(DUREE_ROTATION_GAUCHE);
-    mouvement->rotate(Gauche);
-    delay(DUREE_ROTATION_GAUCHE);
-
+    for (int i=0; i<4; i++)
+    {
+        mouvement->rotate(Gauche);
+        delay(DUREE_ROTATION_GAUCHE);
+    }
+    
     // demi-tour droite, demi-tour gauche, retour position initiale
-    mouvement->rotate(Droite);
-    delay(DUREE_ROTATION_DROITE);
-    mouvement->rotate(Droite);
-    delay(DUREE_ROTATION_DROITE);
-    mouvement->rotate(Gauche);
-    delay(DUREE_ROTATION_DROITE);
-    mouvement->rotate(Gauche);
-    delay(DUREE_ROTATION_DROITE);
+    for (int i=0; i<4; i++)
+    {
+        if(i<2)
+        {
+            mouvement->rotate(Droite);
+            delay(DUREE_ROTATION_DROITE);
+        }
+        else
+        {
+            mouvement->rotate(Gauche);
+            delay(DUREE_ROTATION_GAUCHE);
+        }
+    }
 }
 
 // modifier le 1000 du déplacement selon l'unité normalisée
@@ -56,39 +55,25 @@ void Calibration::test_deplacements()
 void Calibration::test_carre() 
 {
     // rotation, départ à gauche
-    mouvement->deplacement(Avancer, 1000);
-    delay(AUTOMATIC_DELAY);
-    mouvement->rotate(Gauche);
-    delay(DUREE_ROTATION_DROITE);
-    mouvement->deplacement(Avancer, 1000);
-    delay(AUTOMATIC_DELAY);
-    mouvement->rotate(Gauche);
-    delay(DUREE_ROTATION_DROITE);
-    mouvement->deplacement(Avancer, 1000);
-    delay(AUTOMATIC_DELAY);
-    mouvement->rotate(Gauche);
-    delay(DUREE_ROTATION_DROITE);
-    mouvement->deplacement(Avancer, 1000);
-    delay(AUTOMATIC_DELAY);
+    for(int i=0; i<4; i++)
+    {
+        mouvement->deplacement(Avancer, 1000);
+        delay(AUTOMATIC_DELAY);
+        mouvement->rotate(Gauche);
+        delay(DUREE_ROTATION_DROITE);
+    }
 
-    // rotation, départ à droite
-    mouvement->deplacement(Avancer, 1000);
-    delay(AUTOMATIC_DELAY);
-    mouvement->rotate(Droite);
-    delay(DUREE_ROTATION_DROITE);
-    mouvement->deplacement(Avancer, 1000);
-    delay(AUTOMATIC_DELAY);
-    mouvement->rotate(Droite);
-    delay(DUREE_ROTATION_DROITE);
-    mouvement->deplacement(Avancer, 1000);
-    delay(AUTOMATIC_DELAY);
-    mouvement->rotate(Droite);
-    delay(DUREE_ROTATION_DROITE);
-    mouvement->deplacement(Avancer, 1000);
-    delay(AUTOMATIC_DELAY);
+    // rotation, départ à gauche
+    for(int i=0; i<4; i++)
+    {
+        mouvement->deplacement(Avancer, 1000);
+        delay(AUTOMATIC_DELAY);
+        mouvement->rotate(Droite);
+        delay(DUREE_ROTATION_DROITE);
+    }
 }
 
-void Calibration::test_global(Servo myservo, ActionneurAvant actionneur, Leds led)
+void Calibration::test_global(Servo myservo, ActionneurAvant actionneur)
 {
     Serial.println("Test Rotations");
     test_rotations();
@@ -119,8 +104,5 @@ void Calibration::test_global(Servo myservo, ActionneurAvant actionneur, Leds le
     actionneur.serrer();
     actionneur.deserrer();
 
-    Serial.println("Leds");
-    led.On();
-    led.Off();
 
 }

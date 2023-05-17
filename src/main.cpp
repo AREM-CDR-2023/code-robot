@@ -32,6 +32,12 @@ ReseauCapteur* capteurs;
 /* Mouvement */
 Mouvement* mouvement;
 
+// Calibration
+Calibration* calibration;
+
+// Actionneur
+ActionneurAvant* actionneur;
+
 /* Servo */
 Servo myservo;
 
@@ -100,6 +106,26 @@ void setup()
     /* Init servo */
     myservo.attach(pinServoPanier);
 
+    /* Tests calibration*/
+
+    // init calibration
+    calibration = new Calibration(mouvement);
+    actionneur = new ActionneurAvant(pinHacheur1, pinHacheur2);
+
+    // -----------------------------------------
+
+    // tests rotations
+    calibration->test_rotations();
+    
+    // tests déplacements
+    //calibration->test_deplacements();
+
+    //calibration->test_carre();
+
+    //calibration->test_global(myservo, actionneur);
+
+    // -----------------------------------------
+
     /* Tests mouvement */
     /*
     mouvement->deplacement(Avancer, 1000);
@@ -140,5 +166,5 @@ void loop()
     */
 
     /* Leds */
-    leds->timerEndTest();   
+    leds->timerEndTest();
 }
