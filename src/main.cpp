@@ -95,8 +95,7 @@ void setup()
     /* Init serial */
     Serial.begin(115200);
     while (!Serial);
-    // delay(2000) // attendre que le terminal s'ouvre
-
+    
     /* Init Leds */
     leds = new Leds(A3);
     leds->startTimer(95000); // start 95s timer
@@ -107,15 +106,24 @@ void setup()
     myservo.attach(pinServoPanier);
 
     /* Tests calibration*/
-
+    
     // init calibration
+    
     calibration = new Calibration(mouvement);
     actionneur = new ActionneurAvant(pinHacheur1, pinHacheur2);
-
+    
     // -----------------------------------------
-
+    
     // tests rotations
-    calibration->test_rotations();
+    delay(2000); // attendre que le terminal s'ouvre
+    Serial.print("FEUR0 ");
+    delay(2000); // attendre que le terminal s'ouvre
+    mouvement->deplacement(Avancer, 1000);
+    delay(2000); // attendre que le terminal s'ouvre
+    Serial.print("FEUR1 ");
+    delay(2000); // attendre que le terminal s'ouvre
+    Serial.print("FEUR2 ");
+    delay(2000); // attendre que le terminal s'ouvre
     
     // tests déplacements
     //calibration->test_deplacements();
