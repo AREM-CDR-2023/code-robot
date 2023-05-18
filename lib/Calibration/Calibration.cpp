@@ -106,10 +106,6 @@ void Calibration::test_global(Servo myservo, ActionneurAvant actionneur)
     Serial.println(mouvement->capteurs->Avant1.read()); //Lis juste le capteur
     Serial.print("Avant2 : ");
     Serial.println(mouvement->capteurs->Avant2.read());
-    Serial.print("Gauche : ");
-    Serial.println(mouvement->capteurs->Gauche.read());
-    Serial.print("Droite : ");
-    Serial.println(mouvement->capteurs->Droite.read());
     Serial.print("Arriere1 : ");
     Serial.println(mouvement->capteurs->Arriere1.read());
     Serial.print("Arriere2 : ");

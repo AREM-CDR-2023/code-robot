@@ -62,8 +62,6 @@ void Mouvement::mouvementElementaire(int signe)
 // Rotation dans la direction précisée.
 void Mouvement::rotate(SensRotation sens)
 {
-    if(safe_mode)
-        capteurs->EvitementRotation();
     switch (sens)
     {
         case Droite:

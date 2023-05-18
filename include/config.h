@@ -113,7 +113,7 @@
 
 #define pinUltrasonFLE D1       // Pin "Echo" du capteur à ultrason Avant Gauche (câble orange sur le PCB) (en fait c'est peut-être le droite) (FLE c'est pour Feurward Left Echo)
 #define pinUltrasonFLT D2       // Pin "Trig" du capteur à ultrason Avant Gauche (câble jaune sur le PCB)
-// La D3 est pas utilisable
+// La D3 est inutilisable
 #define pinServoPanier D3       // Pin commandant le servomoteur du portail du panier orange (câble vert sur le PCB)
 #define pinUltrasonFRE D5       // Pin "Echo" du capteur à ultrason Avant Droite (câble orange sur le PCB) (en fait c'est peut-être le gauche)
 #define pinUltrasonFRT D6       // Pin "Trig" du capteur à ultrason Avant Droite (câble jaune sur le PCB)
@@ -121,10 +121,10 @@
 #define pinUltrasonRT D8        // Pin "Trig" du capteur à ultrason Droite (câble vert sur le PCB)
 #define pinUltrasonLE D9        // Pin "Echo" du capteur à ultrason Gauche (câble jaune sur le PCB)
 #define pinUltrasonLT D10       // Pin "Trig" du capteur à ultrason Gauche (câble blanc sur le PCB)
-#define pinUltrasonBLE D11      // Pin "Echo" du capteur à ultrason Avant Gauche (câble gris sur le PCB) (en fait c'est peut-être le droite)
-#define pinUltrasonBLT D12      // Pin "Trig" du capteur à ultrason Avant Gauche (câble bleu sur le PCB)
-#define pinUltrasonBRE D13      // Pin "Echo" du capteur à ultrason Avant Droite (câble orange sur le PCB) (en fait c'est peut-être le gauche)
-#define pinUltrasonBRT D14      // Pin "Trig" du capteur à ultrason Avant Droite (câble rouge sur le PCB)
+#define pinUltrasonBLE D11      // Pin "Echo" du capteur à ultrason Arrière Gauche (câble gris sur le PCB) (en fait c'est peut-être le droite)
+#define pinUltrasonBLT D12      // Pin "Trig" du capteur à ultrason Arrière Gauche (câble bleu sur le PCB)
+#define pinUltrasonBRE D13      // Pin "Echo" du capteur à ultrason Arrière Droite (câble orange sur le PCB) (en fait c'est peut-être le gauche)
+#define pinUltrasonBRT D14      // Pin "Trig" du capteur à ultrason Arrière Droite (câble rouge sur le PCB)
 #define pinTeamSelector D15     // Pin du switch de sélection de l'équipe (câble jaune clair sur le PCB) --> à souder
 
 #define pinHacheur1 A0          // Pin "INT1" du hacheur du MCC de l'actionneur presse palais (câble bleu sur le PCB)

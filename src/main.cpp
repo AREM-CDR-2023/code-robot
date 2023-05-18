@@ -65,7 +65,7 @@ void setup()
     pinMode(pinUltrasonBRE, INPUT); 
     pinMode(pinUltrasonBRT, OUTPUT);
 
-    pinMode(pinTeamSelector, INPUT);
+    pinMode(pinTeamSelector, INPUT_PULLUP);
     
     pinMode(pinHacheur1, OUTPUT);
     pinMode(pinHacheur2, OUTPUT);
@@ -79,18 +79,16 @@ void setup()
     dev_spi = new SPIClass(D11, D12, D13);
     dev_spi->begin();
     motors = new BlocMoteurs(dev_spi);
- 
+
     /* Init capteurs */
 
     capteur_front_left = new Ultrasonic(pinUltrasonFLT, pinUltrasonFLE);
     capteur_front_right = new Ultrasonic(pinUltrasonFRT, pinUltrasonFRE);
     capteur_back_left = new Ultrasonic(pinUltrasonBLT, pinUltrasonBLE);
     capteur_back_left = new Ultrasonic(pinUltrasonBLT, pinUltrasonBRE);
-    capteur_left = new Ultrasonic(pinUltrasonLT, pinUltrasonLE);
-    capteur_right = new Ultrasonic(pinUltrasonRT, pinUltrasonRE);
 
-    capteurs = new ReseauCapteur(*capteur_front_left, *capteur_front_right, *capteur_back_left, *capteur_back_right, *capteur_left, *capteur_right);
-
+    capteurs = new ReseauCapteur(*capteur_front_left, *capteur_front_right, *capteur_back_left, *capteur_back_right);
+ 
     /* Init mouvement */
     mouvement = new Mouvement(motors, capteurs);
 
@@ -158,15 +156,11 @@ void setup()
 /* Test servo*/
     motors->motors_stop_low_hiz();
 
-    ouvrir(myservo);
-    delay(AUTOMATIC_DELAY);
-    fermer(myservo);
+    
 }
 
 
 void loop()
 {
-  Serial.println("feur");
-  //motors->commande_vitesses(VITESSE, VITESSE, VITESSE, VITESSE);
 
 }

@@ -1,7 +1,7 @@
 #include "ReseauCapteur.h"
 
-ReseauCapteur::ReseauCapteur(Ultrasonic pinAvant1, Ultrasonic pinAvant2, Ultrasonic pinArriere1, Ultrasonic pinArriere2, Ultrasonic pinGauche, Ultrasonic pinDroite)
-    : Avant1(pinAvant1), Avant2(pinAvant2), Arriere1(pinArriere1), Arriere2(pinArriere2), Gauche(pinGauche), Droite(pinDroite)
+ReseauCapteur::ReseauCapteur(Ultrasonic pinAvant1, Ultrasonic pinAvant2, Ultrasonic pinArriere1, Ultrasonic pinArriere2)
+    : Avant1(pinAvant1), Avant2(pinAvant2), Arriere1(pinArriere1), Arriere2(pinArriere2)
 {
     //Mettre en argument les paires de pin
 }
@@ -78,18 +78,4 @@ uint32_t ReseauCapteur::EvitementTranslation(int signe, BlocMoteurs* motors)
         break;
     }
     return time_lost;
-}
-
-void ReseauCapteur::EvitementRotation() //Fonctionne de la même manière pour les rotations
-{
-    while(testCotes());
-    return;
-}
-
-bool ReseauCapteur::testCotes()
-{
-    bool test_droite = Droite.read() < LIMITE_CM && Droite.read() != 0;
-    bool test_gauche = Gauche.read() < LIMITE_CM && Gauche.read() != 0;
-
-    return test_gauche && test_droite;
 }
