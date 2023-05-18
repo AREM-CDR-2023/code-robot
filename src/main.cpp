@@ -53,12 +53,6 @@ void setup()
     pinMode(pinUltrasonFRE, INPUT);
     pinMode(pinUltrasonFRT, OUTPUT);
 
-    pinMode(pinUltrasonRE, INPUT);
-    pinMode(pinUltrasonRT, OUTPUT);
-
-    pinMode(pinUltrasonLE, INPUT); 
-    pinMode(pinUltrasonLT, OUTPUT);
-
     pinMode(pinUltrasonBLE, INPUT); 
     pinMode(pinUltrasonBLT, OUTPUT);
 
