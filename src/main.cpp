@@ -97,7 +97,7 @@ void setup()
     /* Init serial */
     Serial.begin(115200);
     while (!Serial);
-    delay(5000); // attendre que le terminal s'ouvre
+    //delay(5000); // attendre que le terminal s'ouvre
 
     /* Init Leds */
     /* leds = new Leds(A3);
@@ -113,6 +113,7 @@ void setup()
 
     /* Actionneur */
     actionneur = new ActionneurAvant(pinHacheur1, pinHacheur2);
+
 
 
     /* On attend le signal de start */
@@ -153,20 +154,19 @@ void setup()
     delay(1000);
     motors->motors_stop_low_hiz();
     */
+
+/* Test servo*/
+    motors->motors_stop_low_hiz();
+
+    ouvrir(myservo);
+    delay(AUTOMATIC_DELAY);
+    fermer(myservo);
 }
 
 
 void loop()
 {
-    /* Test servo */
-    /*
-    ouvrir(myservo);
-    delay(4000);
+  Serial.println("feur");
+  //motors->commande_vitesses(VITESSE, VITESSE, VITESSE, VITESSE);
 
-    fermer(myservo);
-    delay(4000);
-    */
-
-    /* Leds */
-    // leds->timerEndTest();   
 }

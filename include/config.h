@@ -114,7 +114,7 @@
 #define pinUltrasonFLE D1       // Pin "Echo" du capteur à ultrason Avant Gauche (câble orange sur le PCB) (en fait c'est peut-être le droite) (FLE c'est pour Feurward Left Echo)
 #define pinUltrasonFLT D2       // Pin "Trig" du capteur à ultrason Avant Gauche (câble jaune sur le PCB)
 // La D3 est pas utilisable
-#define pinServoPanier D4       // Pin commandant le servomoteur du portail du panier orange (câble vert sur le PCB)
+#define pinServoPanier D3       // Pin commandant le servomoteur du portail du panier orange (câble vert sur le PCB)
 #define pinUltrasonFRE D5       // Pin "Echo" du capteur à ultrason Avant Droite (câble orange sur le PCB) (en fait c'est peut-être le gauche)
 #define pinUltrasonFRT D6       // Pin "Trig" du capteur à ultrason Avant Droite (câble jaune sur le PCB)
 #define pinUltrasonRE D7        // Pin "Echo" du capteur à ultrason Droite (câble orange sur le PCB)
