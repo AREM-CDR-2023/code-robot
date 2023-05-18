@@ -24,7 +24,7 @@ class Calibration
         void test_deplacements();
         void test_carre();
 
-        void test_global(Servo myservo, ActionneurAvant actionneur);
+        void test_global(Servo myservo, ActionneurAvant* actionneur);
         
         Mouvement* mouvement;
 };

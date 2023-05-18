@@ -19,7 +19,6 @@ BlocMoteurs* motors;
 /* Leds */
 Leds* leds;
 
-
 /* Capteurs ultrasons */
 Ultrasonic* capteur_front_left;
 Ultrasonic* capteur_front_right;
@@ -29,17 +28,17 @@ Ultrasonic* capteur_left;
 Ultrasonic* capteur_right;
 ReseauCapteur* capteurs;
 
-/* Mouvement */
+// Mouvement
 Mouvement* mouvement;
 
 // Calibration
 Calibration* calibration;
 
+// Servo
+Servo myservo;
+
 // Actionneur
 ActionneurAvant* actionneur;
-
-/* Servo */
-Servo myservo;
 
 void setup()
 {
@@ -89,8 +88,14 @@ void setup()
 
     capteurs = new ReseauCapteur(*capteur_front_left, *capteur_front_right, *capteur_back_left, *capteur_back_right, *capteur_left, *capteur_right);
 
-    /* Init mouvement */
+    /* Mouvement */
     mouvement = new Mouvement(motors, capteurs);
+
+    /* Calibration */
+    calibration = new Calibration(mouvement);
+
+    /* Actionneur */
+    actionneur = new ActionneurAvant(pinHacheur1, pinHacheur2);
 
     /* Init serial */
     Serial.begin(115200);
@@ -102,37 +107,40 @@ void setup()
     leds->Off();
     // leds->On(); // pour tester l'allumage
 
-    /* Init servo */
+    // init servo
     myservo.attach(pinServoPanier);
+    
+    // On attend le signal de start
+    Serial.println("Robot initialisé");
+    // GLISSIERE A AJOUTER ICI <------------------
+    delay(2000);
+    Serial.println("Début de la phase de tests");
 
-    /* Tests calibration*/
-    
-    // init calibration
-    
-    calibration = new Calibration(mouvement);
-    actionneur = new ActionneurAvant(pinHacheur1, pinHacheur2);
-    
     // -----------------------------------------
     
     // tests rotations
-    delay(2000); // attendre que le terminal s'ouvre
-    Serial.print("FEUR0 ");
-    delay(2000); // attendre que le terminal s'ouvre
-    mouvement->deplacement(Avancer, 1000);
-    delay(2000); // attendre que le terminal s'ouvre
-    Serial.print("FEUR1 ");
-    delay(2000); // attendre que le terminal s'ouvre
-    Serial.print("FEUR2 ");
-    delay(2000); // attendre que le terminal s'ouvre
+    for (int i=0; i<5; i++)
+    {
+        calibration->test_rotations();
+    } // mesurer l'écart sur plusieurs séries de rotations
     
     // tests déplacements
-    //calibration->test_deplacements();
+    for (int i=0; i<5; i++)
+    {
+        calibration->test_deplacements();
+    } // mesurer l'écart sur plusieurs séries de déplacements
 
-    //calibration->test_carre();
+    // tests rotations + déplacements
+    for (int i=0; i<5; i++)
+    {
+        calibration->test_carre();
+    }
 
-    //calibration->test_global(myservo, actionneur);
+    calibration->test_global(myservo, actionneur);
 
     // -----------------------------------------
+
+    Serial.println("Fin de la phase de tests");
 
     /* Tests mouvement */
     /*

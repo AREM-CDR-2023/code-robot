@@ -73,7 +73,7 @@ void Calibration::test_carre()
     }
 }
 
-void Calibration::test_global(Servo myservo, ActionneurAvant actionneur)
+void Calibration::test_global(Servo myservo, ActionneurAvant* actionneur)
 {
     Serial.println("Test Rotations");
     test_rotations();
@@ -101,8 +101,6 @@ void Calibration::test_global(Servo myservo, ActionneurAvant actionneur)
     Serial.println(mouvement->capteurs->Arriere2.read());
 
     Serial.println("Test ActionneurAvant");
-    actionneur.serrer();
-    actionneur.deserrer();
-
-
+    actionneur->serrer();
+    actionneur->deserrer();
 }
